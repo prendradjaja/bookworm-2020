@@ -22,7 +22,7 @@ export class ApiService {
       },
       body: JSON.stringify(book),
     })
-    .then();
+    .then(() => undefined);
   }
 
   public editBook(book: Book): Promise<void> {
@@ -34,14 +34,14 @@ export class ApiService {
       },
       body: JSON.stringify(bookWithoutId),
     })
-    .then();
+    .then(() => undefined);
   }
 
   public deleteBook(id: number): Promise<void> {
     return this.myFetch(`/api/books/${id}`, {
       method: 'DELETE'
     })
-    .then();
+    .then(() => undefined);
   }
 
   public getReadingEntries(): Promise<ReadingEntry[]> {
