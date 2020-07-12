@@ -7,12 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SandboxPageComponent implements OnInit {
 
+  books$ = fetch('/api/books').then(response => response.json());
+  readingEntries$ = fetch('/api/reading_entries').then(response => response.json());
+
   constructor() { }
 
   ngOnInit(): void {
-    fetch('/api/books')
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log("Error", error))
   }
 }

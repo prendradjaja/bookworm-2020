@@ -1,1 +1,9 @@
-<p>sandbox-page works!</p>
+Books
+<ol>
+  <li *ngFor="let book of books$ | async">{{ book.title }} ({{ book.id }})</li>
+</ol>
+
+Reading entries
+<ol>
+  <li *ngFor="let entry of readingEntries$ | async">{{ entry.created_at }} {{ entry.book.title }} ({{ entry.id}})</li>
+</ol>
