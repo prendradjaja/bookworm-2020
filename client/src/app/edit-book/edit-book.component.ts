@@ -49,6 +49,7 @@ export class EditBookComponent implements OnInit {
     } else {
       // Impossible
       // TODO: Add type safety via ts-essentials "unreachable case"
+      console.error("Unreachable case:", this.editMode)
     }
   }
 
