@@ -44,6 +44,28 @@ function configureRoutes() {
     }
   });
 
+  app.put('/api/books/:id', async (req, res) => {
+    try {
+      await fakeNetworkDelay();
+      const { title, color } = req.body;
+      const { id } = req.params;
+      const queryResult = await pgPool.query(`
+        UPDATE book
+        SET title = $1, color = $2
+        WHERE id = $3
+      `,
+        [title, color, id]
+      );
+      if (!queryResult.rowCount) {
+        throw new Error("Book not found: ID " + id)
+      }
+      res.send('{}')
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Error " + err);
+    }
+  })
+
   app.get('/api/reading_entries', async (req, res) => {
     try {
       await fakeNetworkDelay();

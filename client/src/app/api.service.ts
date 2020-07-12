@@ -26,8 +26,15 @@ export class ApiService {
   }
 
   public editBook(book: Book): Promise<void> {
-    console.error("Unimplemented: Edit book", book)
-    return;
+    const {id, ...bookWithoutId} = book;
+    return this.myFetch(`/api/books/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookWithoutId),
+    })
+    .then();
   }
 
   public deleteBook(id: number): Promise<void> {

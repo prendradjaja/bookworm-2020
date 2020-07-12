@@ -41,23 +41,26 @@ export class EditBookComponent implements OnInit {
       return;
     }
 
+    let promise;
     if (this.editMode === EditMode.NEW) {
-      this.isSubmitting = true;
-      this.apiService.createBook(values)
-        .then(() => this.handleCancel())
-        .catch(() => this.setError("Error creating book"))
-        .finally(() => this.isSubmitting = false);
+      promise = this.apiService.createBook(values);
     } else if (this.editMode === EditMode.EXISTING) {
       const valuesWithId = {
         ...values,
         id: this.id
       }
-      this.apiService.editBook(valuesWithId)
+      promise = this.apiService.editBook(valuesWithId);
     } else {
       // Impossible
       // TODO: Add type safety via ts-essentials "unreachable case"
       console.error("Unreachable case:", this.editMode)
     }
+
+    this.isSubmitting = true;
+    promise
+      .then(() => this.handleCancel())
+      .catch(() => this.setError("Server error"))
+      .finally(() => this.isSubmitting = false);
   }
 
   handleCancel() {
