@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Book, OmitId } from "../api-types";
 import { EditMode } from "../types";
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'edit-book',
@@ -22,7 +23,7 @@ export class EditBookComponent implements OnInit {
 
   errorMessage: string = '';
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     if (this.book) {
@@ -39,13 +40,13 @@ export class EditBookComponent implements OnInit {
     }
 
     if (this.editMode === EditMode.NEW) {
-      console.log(values);
+      this.apiService.createBook(values);
     } else if (this.editMode === EditMode.EXISTING) {
       const valuesWithId = {
         ...values,
         id: this.id
       }
-      console.log(valuesWithId);
+      this.apiService.editBook(valuesWithId)
     } else {
       // Impossible
       // TODO: Add type safety via ts-essentials "unreachable case"
