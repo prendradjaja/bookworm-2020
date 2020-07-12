@@ -12,6 +12,7 @@ Books
   <li *ngFor="let book of books$ | async">
     {{ book.title }} ({{ book.id }})
     <button (click)="editBook(book)">Edit</button>
+    <button (click)="deleteBook(book)">-</button>
   </li>
 </ol>
 

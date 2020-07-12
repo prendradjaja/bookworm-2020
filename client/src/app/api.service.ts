@@ -24,6 +24,11 @@ export class ApiService {
     return;
   }
 
+  public deleteBook(id: number): Promise<void> {
+    console.error("Unimplemented: Delete book", id)
+    return
+  }
+
   public getReadingEntries(): Promise<ReadingEntry[]> {
     return fetch('/api/reading_entries')
       .then(response => response.json());
