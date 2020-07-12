@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Book } from "../api-types";
+import { Book, OmitId } from "../api-types";
 import { EditMode } from "../types";
 
 @Component({
@@ -62,7 +62,7 @@ export class EditBookComponent implements OnInit {
    * - Returns values as an object if valid, OR
    * - Returns undefined if invalid
    */
-  private getValues(): Omit<Book, "id"> | undefined {
+  private getValues(): OmitId<Book> | undefined {
     const title = this.title.trim();
     if (!title) {
       this.setError("Title is required");

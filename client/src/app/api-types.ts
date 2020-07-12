@@ -1,3 +1,5 @@
+export type OmitId<T> = Omit<T, 'id'>;
+
 export interface Book {
   id: number;
   title: string;
