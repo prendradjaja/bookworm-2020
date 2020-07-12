@@ -38,8 +38,10 @@ export class ApiService {
   }
 
   public deleteBook(id: number): Promise<void> {
-    console.error("Unimplemented: Delete book", id)
-    return
+    return this.myFetch(`/api/books/${id}`, {
+      method: 'DELETE'
+    })
+    .then();
   }
 
   public getReadingEntries(): Promise<ReadingEntry[]> {

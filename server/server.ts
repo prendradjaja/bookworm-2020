@@ -66,6 +66,24 @@ function configureRoutes() {
     }
   })
 
+  app.delete('/api/books/:id', async (req, res) => {
+    try {
+      await fakeNetworkDelay();
+      const { id } = req.params;
+      const queryResult = await pgPool.query(
+        'DELETE FROM book WHERE id = $1',
+        [id]
+      );
+      if (!queryResult.rowCount) {
+        throw new Error("Book not found: ID " + id)
+      }
+      res.send('{}')
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Error " + err);
+    }
+  })
+
   app.get('/api/reading_entries', async (req, res) => {
     try {
       await fakeNetworkDelay();

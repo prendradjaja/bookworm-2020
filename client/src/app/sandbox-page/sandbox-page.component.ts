@@ -43,7 +43,9 @@ export class SandboxPageComponent {
 
     const yes = confirm("Delete book? " + book.title);
     if (yes) {
-      this.apiService.deleteBook(book.id)
+      this.apiService.deleteBook(book.id).then(
+        () => console.info(`Deleted book ${book.id} (${book.title})`)
+      )
     }
   }
 
