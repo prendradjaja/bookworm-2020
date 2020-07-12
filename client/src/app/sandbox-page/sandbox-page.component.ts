@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ApiService } from "../api.service"
 
 @Component({
   selector: 'app-sandbox-page',
   templateUrl: './sandbox-page.component.html',
   styleUrls: ['./sandbox-page.component.scss']
 })
-export class SandboxPageComponent implements OnInit {
+export class SandboxPageComponent {
 
-  books$ = fetch('/api/books').then(response => response.json());
-  readingEntries$ = fetch('/api/reading_entries').then(response => response.json());
+  books$ = this.apiService.getBooks();
+  readingEntries$ = this.apiService.getReadingEntries();
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private apiService: ApiService) {}
 }
