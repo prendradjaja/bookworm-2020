@@ -1,0 +1,12 @@
+book:
+  id
+  title: string
+  color?: string
+
+reading_entry:
+  id
+  book_id
+  start_place?: string
+  end_place?: string
+  notes
+  timestamp
