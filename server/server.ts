@@ -22,8 +22,22 @@ function configureRoutes() {
 
   app.get('/api/books', async (req, res) => {
     try {
-      const result = await pgPool.query('SELECT * FROM book');
-      res.send(result.rows);
+      const { rows: books } = await pgPool.query('SELECT * FROM book');
+      res.send(books);
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  });
+
+  app.get('/api/reading_entries', async (req, res) => {
+    try {
+      const { rows: entries } = await pgPool.query('SELECT * FROM reading_entry');
+      const { rows: books } = await pgPool.query('SELECT * FROM book');
+      res.send(entries.map(entry => ({
+        ...entry,
+        book: books.find(b => b.id === entry.book_id)
+      })));
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
