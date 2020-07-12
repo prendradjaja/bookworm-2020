@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Book } from "../api-types";
+import { EditMode } from "../types";
 
 @Component({
   selector: 'edit-book',
@@ -7,17 +8,52 @@ import { Book } from "../api-types";
   styleUrls: ['./edit-book.component.scss']
 })
 export class EditBookComponent implements OnInit {
+  @Input() public editMode: EditMode;
+  // Must be provided if and only if editMode === 'existing'
+  @Input() public book?: Book;
+
+  @Output() public cancel = new EventEmitter<void>();
+
+  id?: number;
+
+  // Form values
   title: string = '';
   color: string = '';
+
   errorMessage: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
+    if (this.book) {
+      this.id = this.book.id;
+      this.title = this.book.title;
+      this.book.color && (this.color = this.book.color);
+    }
   }
 
   submit() {
-    console.log(this.getValues());
+    const values = this.getValues();
+    if (!values) {
+      return;
+    }
+
+    if (this.editMode === EditMode.NEW) {
+      console.log(values);
+    } else if (this.editMode === EditMode.EXISTING) {
+      const valuesWithId = {
+        ...values,
+        id: this.id
+      }
+      console.log(valuesWithId);
+    } else {
+      // Impossible
+      // TODO: Add type safety via ts-essentials "unreachable case"
+    }
+  }
+
+  handleCancel() {
+    this.cancel.next();
   }
 
   /**

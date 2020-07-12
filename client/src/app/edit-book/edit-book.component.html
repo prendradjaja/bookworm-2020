@@ -1,4 +1,10 @@
-<h2>Creating book</h2>
+<h2 *ngIf="editMode === 'new'">
+  Creating book
+</h2>
+<h2 *ngIf="editMode === 'existing'">
+  Editing book (id: {{ id }})
+</h2>
+
 <div>
   Title:
   <input type="text" [(ngModel)]="title">
@@ -8,4 +14,5 @@
   <input type="text" [(ngModel)]="color">
 </div>
 <button (click)="submit()">Submit</button>
+<button (click)="handleCancel()">Cancel</button>
 <div class="error">{{ errorMessage }}</div>

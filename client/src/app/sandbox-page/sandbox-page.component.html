@@ -1,12 +1,22 @@
 Books
-<edit-book></edit-book>
+<edit-book
+  *ngIf="editingBook"
+  [editMode]="editingBook.editMode"
+  [book]="editingBook.book"
+  (cancel)="stopEditingBook()"
+></edit-book>
 <ol>
-  <li><button (click)="addBook()">Add</button></li>
-  <li *ngFor="let book of books$ | async">{{ book.title }} ({{ book.id }})</li>
+  <li>
+    <button (click)="addBook()">+</button>
+  </li>
+  <li *ngFor="let book of books$ | async">
+    {{ book.title }} ({{ book.id }})
+    <button (click)="editBook(book)">Edit</button>
+  </li>
 </ol>
 
 Reading entries
 <ol>
-  <li><button disabled>Add</button></li>
+  <li><button disabled>+</button></li>
   <li *ngFor="let entry of readingEntries$ | async">{{ entry.created_at }} {{ entry.book.title }} ({{ entry.id}})</li>
 </ol>
