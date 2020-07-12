@@ -10,6 +10,9 @@ export class SandboxPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    fetch('/api/books')
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log("Error", error))
   }
-
 }
