@@ -10,7 +10,7 @@ export class ApiService {
   constructor() { }
 
   public getBooks(): Promise<Book[]> {
-    return fetch('/api/books')
+    return this.myFetch('/api/books')
       .then(response => response.json());
   }
 
@@ -36,7 +36,7 @@ export class ApiService {
   }
 
   public getReadingEntries(): Promise<ReadingEntry[]> {
-    return fetch('/api/reading_entries')
+    return this.myFetch('/api/reading_entries')
       .then(response => response.json());
   }
 
