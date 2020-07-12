@@ -18,10 +18,12 @@ export class EditBookComponent implements OnInit {
   id?: number;
 
   // Form values
-  title: string = '';
+  title: string = 'x';
   color: string = '';
 
+  // Other state
   errorMessage: string = '';
+  isSubmitting = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -40,7 +42,11 @@ export class EditBookComponent implements OnInit {
     }
 
     if (this.editMode === EditMode.NEW) {
-      this.apiService.createBook(values);
+      this.isSubmitting = true;
+      this.apiService.createBook(values)
+        .then(() => this.handleCancel())
+        .catch(() => this.setError("Error creating book"))
+        .finally(() => this.isSubmitting = false);
     } else if (this.editMode === EditMode.EXISTING) {
       const valuesWithId = {
         ...values,

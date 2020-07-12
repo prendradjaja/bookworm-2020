@@ -13,6 +13,6 @@
   Color: (optional)
   <input type="text" [(ngModel)]="color">
 </div>
-<button (click)="submit()">Submit</button>
+<button (click)="submit()" [disabled]="isSubmitting">Submit</button>
 <button (click)="handleCancel()">Cancel</button>
 <div class="error">{{ errorMessage }}</div>
