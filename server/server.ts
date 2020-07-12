@@ -25,7 +25,7 @@ function configureRoutes() {
       res.send(books);
     } catch (err) {
       console.error(err);
-      res.send("Error " + err);
+      res.status(500).send("Error " + err);
     }
   });
   
@@ -55,7 +55,7 @@ function configureRoutes() {
       })));
     } catch (err) {
       console.error(err);
-      res.send("Error " + err);
+      res.status(500).send("Error " + err);
     }
   });
 }
