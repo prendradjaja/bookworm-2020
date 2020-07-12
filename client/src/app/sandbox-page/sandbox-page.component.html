@@ -1,9 +1,12 @@
 Books
+<edit-book></edit-book>
 <ol>
+  <li><button (click)="addBook()">Add</button></li>
   <li *ngFor="let book of books$ | async">{{ book.title }} ({{ book.id }})</li>
 </ol>
 
 Reading entries
 <ol>
+  <li><button disabled>Add</button></li>
   <li *ngFor="let entry of readingEntries$ | async">{{ entry.created_at }} {{ entry.book.title }} ({{ entry.id}})</li>
 </ol>

@@ -12,4 +12,7 @@ export class SandboxPageComponent {
   readingEntries$ = this.apiService.getReadingEntries();
 
   constructor(private apiService: ApiService) {}
+
+  addBook() {
+  }
 }

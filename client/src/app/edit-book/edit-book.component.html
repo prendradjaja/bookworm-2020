@@ -1,0 +1,11 @@
+<h2>Creating book</h2>
+<div>
+  Title:
+  <input type="text" [(ngModel)]="title">
+</div>
+<div>
+  Color: (optional)
+  <input type="text" [(ngModel)]="color">
+</div>
+<button (click)="submit()">Submit</button>
+<div class="error">{{ errorMessage }}</div>
