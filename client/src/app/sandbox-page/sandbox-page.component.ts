@@ -20,9 +20,7 @@ export class SandboxPageComponent {
     book?: Book // Undefined if creating a new book
   };
 
-  constructor(private apiService: ApiService) {
-    this.addBook()
-  }
+  constructor(private apiService: ApiService) {}
 
   async addBook() {
     await this.stopEditingBookAndTick();

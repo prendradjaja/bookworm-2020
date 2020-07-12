@@ -18,7 +18,7 @@ export class EditBookComponent implements OnInit {
   id?: number;
 
   // Form values
-  title: string = 'x';
+  title: string = '';
   color: string = '';
 
   // Other state
