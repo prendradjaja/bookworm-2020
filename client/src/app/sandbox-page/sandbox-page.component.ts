@@ -23,6 +23,7 @@ export class SandboxPageComponent {
   // Undefined if not editing
   editingReadingEntry?: {
     editMode: EditMode,
+    book: Book;
     readingEntry?: ReadingEntry // Undefined if creating a new entry
   };
 
@@ -64,10 +65,11 @@ export class SandboxPageComponent {
     await wait(0);
   }
 
-  async addReadingEntry() {
+  async addReadingEntry(book: Book) {
     await this.stopEditingReadingEntryAndTick();
     this.editingReadingEntry = {
-      editMode: EditMode.NEW
+      editMode: EditMode.NEW,
+      book
     };
   }
 

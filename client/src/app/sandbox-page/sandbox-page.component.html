@@ -13,6 +13,7 @@ Books
     {{ book.id }}: {{ book.title }}
     <button (click)="editBook(book)">Edit</button>
     <button (click)="deleteBook(book)">-</button>
+    <button (click)="addReadingEntry(book)">Add entry</button>
   </li>
 </ul>
 
@@ -20,10 +21,11 @@ Reading entries
 <edit-reading-entry
   *ngIf="editingReadingEntry"
   [editMode]="'new'"
+  [bookId]="editingReadingEntry.book.id"
+  [bookTitle]="editingReadingEntry.book.title"
   (cancel)="stopEditingReadingEntry()"
 ></edit-reading-entry>
 <ul>
-  <li><button (click)="addReadingEntry()">+</button></li>
   <li *ngFor="let entry of readingEntries$ | async">
     {{ entry.id}}: [{{ entry.start_place}} - {{ entry.end_place }}] {{ entry.book.title }} {{ entry.created_at }}
     <button disabled>Edit</button>

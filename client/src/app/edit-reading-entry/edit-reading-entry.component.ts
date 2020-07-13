@@ -12,13 +12,13 @@ export class EditReadingEntryComponent implements OnInit {
   @Input() public editMode: EditMode;
   // Must be provided if and only if editMode === 'existing'
   @Input() public readingEntry?: ReadingEntry;
+  @Input() public bookId: number;
+  @Input() public bookTitle: string;
   @Output() public cancel = new EventEmitter<void>();
 
   id?: number;
 
   // Form values
-  // TODO Add book_id control -- First let's create a shared store for books (and a route guard)
-  book_id: number = 24;
   start_place: string = '';
   end_place: string = '';
   notes: string = '';
@@ -76,8 +76,7 @@ export class EditReadingEntryComponent implements OnInit {
    * - Returns undefined if invalid
    */
   private getValues(): ReadingEntryCreationBody | undefined {
-    // TODO Actually implement book_id (and as required, unlike other values here)
-    const book_id = this.book_id;
+    const book_id = this.bookId;
 
     const start_place = this.start_place.trim() || undefined;
     const end_place = this.end_place.trim() || undefined;
