@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book, ReadingEntry, OmitId, ReadingEntryCreationBody } from "./api-types";
+import { Book, ReadingEntry, OmitId, ReadingEntryCreationBody, BookCreationBody } from "./api-types";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class ApiService {
       .then(response => response.json());
   }
 
-  public createBook(book: OmitId<Book>): Promise<void> {
+  public createBook(book: BookCreationBody): Promise<void> {
     return this.myFetch('/api/books', {
       method: 'POST',
       headers: {

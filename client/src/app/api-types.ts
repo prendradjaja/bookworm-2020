@@ -6,7 +6,6 @@ export interface Book {
   color?: string;
 }
 
-// TODO Replace existing OmitId<Book> with this where applicable
 export type BookCreationBody = OmitId<Book>;
 
 export interface ReadingEntry {
