@@ -98,6 +98,28 @@ function configureRoutes() {
       res.status(500).send("Error " + err);
     }
   });
+
+  // TODO Maybe restructure:
+  // - POST /api/reading_entries -> POST /api/books/:id/reading_entries
+  // (Particularly if I end up implementing a "get reading entries for book" endpoint)
+  app.post('/api/reading_entries', async (req, res) => {
+    try {
+      await fakeNetworkDelay();
+      const { book_id, start_place, end_place, notes } = req.body;
+      await pgPool.query(`
+        INSERT INTO reading_entry
+          (book_id, start_place, end_place, notes, created_at)
+        VALUES
+          ($1, $2, $3, $4, current_timestamp)
+      `,
+        [book_id, start_place, end_place, notes]
+      );
+      res.send('{}')
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Error " + err);
+    }
+  });
 }
 
 function fakeNetworkDelay() {

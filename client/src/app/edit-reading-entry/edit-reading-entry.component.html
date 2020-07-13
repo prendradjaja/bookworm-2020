@@ -1,0 +1,25 @@
+<h2 *ngIf="editMode === 'new'">
+  Creating reading entry
+</h2>
+<h2 *ngIf="editMode === 'existing'">
+  Editing reading entry (id: {{ id }})
+</h2>
+
+<div>
+  Book: {{ book_id }}
+</div>
+<div>
+  Start place:
+  <input type="text" [(ngModel)]="start_place">
+</div>
+<div>
+  End place:
+  <input type="text" [(ngModel)]="end_place">
+</div>
+<div>
+  Notes:
+  <textarea [(ngModel)]="notes"></textarea>
+</div>
+<button (click)="submit()" [disabled]="isSubmitting">Submit</button>
+<button (click)="handleCancel()">Cancel</button>
+<div class="error">{{ errorMessage }}</div>

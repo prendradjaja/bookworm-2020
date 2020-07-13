@@ -12,7 +12,6 @@ export class EditBookComponent implements OnInit {
   @Input() public editMode: EditMode;
   // Must be provided if and only if editMode === 'existing'
   @Input() public book?: Book;
-
   @Output() public cancel = new EventEmitter<void>();
 
   id?: number;
@@ -79,10 +78,7 @@ export class EditBookComponent implements OnInit {
       return undefined;
     }
 
-    let color = this.color.trim();
-    if (!color) {
-      color = undefined;
-    }
+    const color = this.color.trim() || undefined;
 
     return { title, color }
   }

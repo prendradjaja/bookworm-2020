@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../api.service"
-import { Book } from '../api-types';
+import { Book, ReadingEntry } from '../api-types';
 import { EditMode } from '../types';
 import { wait } from '../misc';
 
@@ -18,6 +18,12 @@ export class SandboxPageComponent {
   editingBook?: {
     editMode: EditMode,
     book?: Book // Undefined if creating a new book
+  };
+
+  // Undefined if not editing
+  editingReadingEntry?: {
+    editMode: EditMode,
+    readingEntry?: ReadingEntry // Undefined if creating a new entry
   };
 
   constructor(private apiService: ApiService) {}
@@ -55,6 +61,22 @@ export class SandboxPageComponent {
 
   private async stopEditingBookAndTick() {
     this.stopEditingBook();
+    await wait(0);
+  }
+
+  async addReadingEntry() {
+    await this.stopEditingReadingEntryAndTick();
+    this.editingReadingEntry = {
+      editMode: EditMode.NEW
+    };
+  }
+
+  stopEditingReadingEntry() {
+    this.editingReadingEntry = undefined;
+  }
+
+  private async stopEditingReadingEntryAndTick() {
+    this.stopEditingReadingEntry();
     await wait(0);
   }
 }

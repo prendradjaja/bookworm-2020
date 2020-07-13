@@ -17,7 +17,12 @@ Books
 </ol>
 
 Reading entries
+<edit-reading-entry
+  *ngIf="editingReadingEntry"
+  [editMode]="'new'"
+  (cancel)="stopEditingReadingEntry()"
+></edit-reading-entry>
 <ol>
-  <li><button disabled>+</button></li>
+  <li><button (click)="addReadingEntry()">+</button></li>
   <li *ngFor="let entry of readingEntries$ | async">{{ entry.created_at }} {{ entry.book.title }} ({{ entry.id}})</li>
 </ol>

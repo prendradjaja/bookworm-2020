@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SandboxPageComponent } from './sandbox-page/sandbox-page.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { EditReadingEntryComponent } from './edit-reading-entry/edit-reading-entry.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     SandboxPageComponent,
-    EditBookComponent
+    EditBookComponent,
+    EditReadingEntryComponent
   ],
   imports: [
     BrowserModule,
