@@ -25,6 +25,7 @@ Reading entries
 <ul>
   <li><button (click)="addReadingEntry()">+</button></li>
   <li *ngFor="let entry of readingEntries$ | async">
-    {{ entry.id}}: {{ entry.created_at }} {{ entry.book.title }}
+    {{ entry.id}}: [{{ entry.start_place}} - {{ entry.end_place }}] {{ entry.book.title }} {{ entry.created_at }}
+    <br>{{ entry.notes }}
   </li>
 </ul>
