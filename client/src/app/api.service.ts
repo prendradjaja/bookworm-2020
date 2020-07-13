@@ -60,6 +60,13 @@ export class ApiService {
     .then(() => undefined);
   }
 
+  public deleteReadingEntry(id: number): Promise<void> {
+    return this.myFetch(`/api/reading_entries/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => undefined);
+  }
+
   /**
    * Rejects upon non-2XX (fetch doesn't do this!).
    *

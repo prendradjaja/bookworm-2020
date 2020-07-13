@@ -71,6 +71,18 @@ export class SandboxPageComponent {
     };
   }
 
+  async deleteReadingEntry(entry: ReadingEntry) {
+    this.stopEditingReadingEntry();
+    await wait(0) // So that confirm() doesn't block updating ui for stopEditingBook()
+
+    const yes = confirm("Delete reading entry? " + entry.id);
+    if (yes) {
+      this.apiService.deleteReadingEntry(entry.id).then(
+        () => console.info(`Deleted reading entry ${entry.id}`)
+      )
+    }
+  }
+
   stopEditingReadingEntry() {
     this.editingReadingEntry = undefined;
   }

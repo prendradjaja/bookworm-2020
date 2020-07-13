@@ -120,6 +120,25 @@ function configureRoutes() {
       res.status(500).send("Error " + err);
     }
   });
+
+  app.delete('/api/reading_entries/:id', async (req, res) => {
+    try {
+      await fakeNetworkDelay();
+      const { id } = req.params;
+      const queryResult = await pgPool.query(
+        'DELETE FROM reading_entry WHERE id = $1',
+        [id]
+      );
+      if (!queryResult.rowCount) {
+        throw new Error("Reading entry not found: ID " + id)
+      }
+      res.send('{}')
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Error " + err);
+    }
+  })
+
 }
 
 function fakeNetworkDelay() {
