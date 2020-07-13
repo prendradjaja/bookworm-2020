@@ -5,16 +5,16 @@ Books
   [book]="editingBook.book"
   (cancel)="stopEditingBook()"
 ></edit-book>
-<ol>
+<ul>
   <li>
     <button (click)="addBook()">+</button>
   </li>
   <li *ngFor="let book of books$ | async">
-    {{ book.title }} ({{ book.id }})
+    {{ book.id }}: {{ book.title }}
     <button (click)="editBook(book)">Edit</button>
     <button (click)="deleteBook(book)">-</button>
   </li>
-</ol>
+</ul>
 
 Reading entries
 <edit-reading-entry
@@ -22,7 +22,9 @@ Reading entries
   [editMode]="'new'"
   (cancel)="stopEditingReadingEntry()"
 ></edit-reading-entry>
-<ol>
+<ul>
   <li><button (click)="addReadingEntry()">+</button></li>
-  <li *ngFor="let entry of readingEntries$ | async">{{ entry.created_at }} {{ entry.book.title }} ({{ entry.id}})</li>
-</ol>
+  <li *ngFor="let entry of readingEntries$ | async">
+    {{ entry.id}}: {{ entry.created_at }} {{ entry.book.title }}
+  </li>
+</ul>
