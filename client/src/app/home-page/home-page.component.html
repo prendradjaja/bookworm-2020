@@ -30,7 +30,8 @@ Reading entries
   (cancel)="stopEditingReadingEntry()"
 ></edit-reading-entry>
 <div *ngFor="let entry of readingEntries$ | async">
-  <button disabled>Edit</button>
-  <button (click)="deleteReadingEntry(entry)">-</button>
-  <app-event-card [row]="entry"></app-event-card>
+  <app-event-card
+    [row]="entry"
+    (delete)="deleteReadingEntry(entry)"
+  ></app-event-card>
 </div>

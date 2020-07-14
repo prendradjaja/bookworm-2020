@@ -11,6 +11,8 @@
         <span *ngIf="row.start_place && row.end_place">&ndash;</span>
         <span *ngIf="row.end_place">{{row.end_place}}</span>
       </span>
+      <button disabled>Edit</button>
+      <button (click)="handleDelete()">-</button>
     </div>
     <div *ngIf="row.created_at" class="timestamp">
       {{row.created_at}}
