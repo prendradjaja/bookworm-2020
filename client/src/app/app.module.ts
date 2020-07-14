@@ -10,6 +10,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReadingEntryComponent } from './edit-reading-entry/edit-reading-entry.component';
 import { EventCardComponent } from './event-card.component';
 import { BooksPageComponent } from './books-page/books-page.component'
+import { CalendarViewComponent } from './calendar-view/calendar-view.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BooksPageComponent } from './books-page/books-page.component'
     EditBookComponent,
     EditReadingEntryComponent,
     EventCardComponent,
-    BooksPageComponent
+    BooksPageComponent,
+    CalendarViewComponent
   ],
   imports: [
     BrowserModule,

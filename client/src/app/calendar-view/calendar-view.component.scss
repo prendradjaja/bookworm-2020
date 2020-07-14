@@ -1,0 +1,92 @@
+$calendar-day-size: 48px;
+
+$z-multi-color: 10;
+$z-end-of-book: 20;
+$z-number-and-dots: 30;
+
+.calendar-centerer {
+  max-width: 400px;
+  table.calendar-view {
+    margin-top: 24px;
+    border-spacing: 0;
+
+    // // Centering
+    // margin-left: auto;
+    // margin-right: auto;
+
+    calendar-day-dots {
+      display: block;
+      width: $calendar-day-size;
+      text-align: center;
+      position: absolute;
+      bottom: 3px;
+      z-index: $z-number-and-dots;
+    }
+
+    td.calendar-day {
+      padding: 0;
+      height: $calendar-day-size;
+      width: $calendar-day-size;
+      color: white;
+      border: 1px solid white;
+      cursor: pointer;
+      text-align: center;
+      // todo align with left side?
+
+      &.end-of-book:before {
+        $downsize: 6px;
+        position: absolute;
+        top: $downsize / 2;
+        left: $downsize / 2;
+        width: $calendar-day-size - $downsize;
+        height: $calendar-day-size - $downsize;
+        border-radius: ($calendar-day-size - $downsize)/2;
+        background: white;
+        z-index: $z-end-of-book;
+        opacity: 0.5;
+        content: "";
+      }
+
+      .multi-color {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 0px;
+        width: 0px;
+        border-top: $calendar-day-size solid red;
+        border-right: $calendar-day-size solid yellow;
+        z-index: $z-multi-color;
+      }
+
+      .day-number {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: $z-number-and-dots;
+        height: $calendar-day-size;
+        width: $calendar-day-size;
+        line-height: $calendar-day-size;
+        font-size: 18px;
+      }
+
+      position: relative; // for <calendar-day-dots>
+
+      &.day-selected {
+        border: 1px solid black;
+        .day-number {
+          font-weight: bold;
+        }
+        opacity: 0.5;
+      }
+
+      &:hover:not(.day-selected) {
+        // todo do the same thing that bryant and i did with bookmark indicators? (i.e. even lighter if you re-hover or whatever)
+        opacity: 0.75;
+      }
+    }
+  }
+
+  .toggle-row td {
+    text-align: center;
+  }
+}
