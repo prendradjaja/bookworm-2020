@@ -18,3 +18,7 @@ export interface ReadingEntry {
 }
 
 export type ReadingEntryCreationBody = Omit<ReadingEntry, 'id' | 'created_at'>
+
+export interface HydratedReadingEntry extends ReadingEntry {
+  book: Book;
+}

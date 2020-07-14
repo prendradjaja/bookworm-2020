@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { ReadingEntry } from './api-types';
+import { HydratedReadingEntry } from './api-types';
+import { ColorService } from './color.service'
 
 @Component({
   selector: "app-event-card",
@@ -7,11 +8,11 @@ import { ReadingEntry } from './api-types';
   styleUrls: ["./event-card.component.scss"]
 })
 export class EventCardComponent implements OnInit {
-  @Input() row: ReadingEntry;
+  @Input() row: HydratedReadingEntry;
 
   @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
 
-  // constructor(private colorService: ColorService) {}
+  constructor(private colorService: ColorService) {}
 
   ngOnInit() {}
 
@@ -20,7 +21,6 @@ export class EventCardComponent implements OnInit {
   }
 
   getColor(): string {
-    // return this.colorService.getColor(this.row.book);
-    return
+    return this.colorService.getColor(this.row.book);
   }
 }
