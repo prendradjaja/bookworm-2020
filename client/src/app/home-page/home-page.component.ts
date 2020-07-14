@@ -56,6 +56,11 @@ export class HomePageComponent {
     this.editingReadingEntry = undefined;
   }
 
+  /**
+   * This is a bit of a hack: If you're already editing one entry and then click to edit another,
+   * we want to force Angular to destroy the old EditReadingEntryComp and create another (else we have to
+   * worry about leftover state).
+   */
   private async stopEditingReadingEntryAndTick() {
     this.stopEditingReadingEntry();
     await wait(0);

@@ -62,6 +62,11 @@ export class BooksPageComponent implements OnInit {
     this.editingBook = undefined;
   }
 
+  /**
+   * This is a bit of a hack: If you're already editing one book and then click to edit another,
+   * we want to force Angular to destroy the old EditBookComp and create another (else we have to
+   * worry about leftover state).
+   */
   private async stopEditingBookAndTick() {
     this.stopEditingBook();
     await wait(0);
