@@ -1,0 +1,18 @@
+Books
+<edit-book
+  *ngIf="editingBook"
+  [editMode]="editingBook.editMode"
+  [book]="editingBook.book"
+  (cancel)="stopEditingBook()"
+></edit-book>
+<ul>
+  <li>
+    <button (click)="addBook()">+</button>
+  </li>
+  <li *ngFor="let book of books$ | async">
+    {{ book.id }}: {{ book.title }}
+    <button (click)="editBook(book)">Edit</button>
+    <button (click)="deleteBook(book)">-</button>
+    <button (click)="addReadingEntry(book)">Add entry</button>
+  </li>
+</ul>

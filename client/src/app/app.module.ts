@@ -8,7 +8,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SandboxPageComponent } from './sandbox-page/sandbox-page.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReadingEntryComponent } from './edit-reading-entry/edit-reading-entry.component';
-import { EventCardComponent } from './event-card.component'
+import { EventCardComponent } from './event-card.component';
+import { BooksPageComponent } from './books-page/books-page.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EventCardComponent } from './event-card.component'
     SandboxPageComponent,
     EditBookComponent,
     EditReadingEntryComponent,
-    EventCardComponent
+    EventCardComponent,
+    BooksPageComponent
   ],
   imports: [
     BrowserModule,
