@@ -4,6 +4,8 @@ import { Book, ReadingEntry } from '../api-types';
 import { EditMode } from '../types';
 import { wait } from '../misc';
 
+import { DateTime } from "luxon";
+
 @Component({
   selector: 'app-sandbox-page',
   templateUrl: './sandbox-page.component.html',
@@ -27,7 +29,9 @@ export class SandboxPageComponent {
     readingEntry?: ReadingEntry // Undefined if creating a new entry
   };
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+    this.luxonSandbox();
+  }
 
   async addBook() {
     await this.stopEditingBookAndTick();
@@ -92,5 +96,25 @@ export class SandboxPageComponent {
   private async stopEditingReadingEntryAndTick() {
     this.stopEditingReadingEntry();
     await wait(0);
+  }
+
+  private luxonSandbox() {
+    window['DateTime'] = DateTime
+    const startDateString = '2020-01-01T17:00:00.000Z';
+
+    let week = DateTime
+      .fromISO(startDateString)
+      .toLocal()
+      .startOf('week');
+    const endWeek = DateTime
+      .local()
+      .startOf('week');
+    for (; week <= endWeek; week = week.plus({week: 1})) {
+      for (let i = 0; i < 7; i++) {
+        let date = week.plus({days: i});
+        console.log(date.toLocaleString(DateTime.DATE_HUGE))
+      }
+      console.log('');
+    }
   }
 }
