@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Book, OmitId, BookCreationBody } from "../api-types";
 import { EditMode } from "../types";
 import { ApiService } from '../api.service';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'edit-book',
@@ -24,7 +25,10 @@ export class EditBookComponent implements OnInit {
   errorMessage: string = '';
   isSubmitting = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private bookService: BookService
+  ) {}
 
   ngOnInit(): void {
     if (this.book) {
@@ -59,7 +63,8 @@ export class EditBookComponent implements OnInit {
     promise
       .then(() => this.handleCancel())
       .catch(() => this.setError("Server error"))
-      .finally(() => this.isSubmitting = false);
+      .finally(() => this.isSubmitting = false)
+      .then(() => this.bookService.refetch());
   }
 
   handleCancel() {
