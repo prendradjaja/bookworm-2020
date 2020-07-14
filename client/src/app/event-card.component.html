@@ -15,7 +15,7 @@
       <button (click)="handleDelete()">-</button>
     </div>
     <div *ngIf="row.created_at" class="timestamp">
-      {{row.created_at}}
+      {{ row.created_at | date }}
     </div>
   </div>
   <div *ngIf="row.notes">
