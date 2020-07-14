@@ -1,0 +1,24 @@
+<div class="event-card-container" [style.border-left-color]="getColor()">
+  <div *ngIf="row.created_at || row.start_place || row.end_place">
+    <div>
+      <!-- Should this be a button or a link? -->
+      <!-- How does (click)= work? <a> isn't an Angular component... is it? -->
+      <a style="cursor: pointer" class="book" (click)="handleClick(row.book.title)" [style.color]="getColor()">
+        {{row.book.title}}
+      </a>
+      <span *ngIf="row.start_place || row.end_place">
+        <span *ngIf="row.start_place">{{row.start_place}}</span>
+        <span *ngIf="row.start_place && row.end_place">&ndash;</span>
+        <span *ngIf="row.end_place">{{row.end_place}}</span>
+      </span>
+    </div>
+    <div *ngIf="row.created_at" class="timestamp">
+      {{row.created_at}}
+    </div>
+  </div>
+  <div *ngIf="row.notes">
+    {{ row.notes }}
+    <!-- <app-long-response-formatter [text]="row.notes">
+    </app-long-response-formatter> -->
+  </div>
+</div>

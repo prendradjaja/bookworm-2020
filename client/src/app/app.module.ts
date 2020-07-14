@@ -8,6 +8,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SandboxPageComponent } from './sandbox-page/sandbox-page.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReadingEntryComponent } from './edit-reading-entry/edit-reading-entry.component';
+import { EventCardComponent } from './event-card.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { EditReadingEntryComponent } from './edit-reading-entry/edit-reading-ent
     HomePageComponent,
     SandboxPageComponent,
     EditBookComponent,
-    EditReadingEntryComponent
+    EditReadingEntryComponent,
+    EventCardComponent
   ],
   imports: [
     BrowserModule,

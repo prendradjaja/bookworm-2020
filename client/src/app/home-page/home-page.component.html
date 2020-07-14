@@ -1,1 +1,36 @@
-<a routerLink="/sandbox">Sandbox</a>
+<div>
+  <a routerLink="/sandbox">Sandbox</a>
+</div>
+
+Books
+<edit-book
+  *ngIf="editingBook"
+  [editMode]="editingBook.editMode"
+  [book]="editingBook.book"
+  (cancel)="stopEditingBook()"
+></edit-book>
+<ul>
+  <li>
+    <button (click)="addBook()">+</button>
+  </li>
+  <li *ngFor="let book of books$ | async">
+    {{ book.id }}: {{ book.title }}
+    <button (click)="editBook(book)">Edit</button>
+    <button (click)="deleteBook(book)">-</button>
+    <button (click)="addReadingEntry(book)">Add entry</button>
+  </li>
+</ul>
+
+Reading entries
+<edit-reading-entry
+  *ngIf="editingReadingEntry"
+  [editMode]="'new'"
+  [bookId]="editingReadingEntry.book.id"
+  [bookTitle]="editingReadingEntry.book.title"
+  (cancel)="stopEditingReadingEntry()"
+></edit-reading-entry>
+<div *ngFor="let entry of readingEntries$ | async">
+  <button disabled>Edit</button>
+  <button (click)="deleteReadingEntry(entry)">-</button>
+  <app-event-card [row]="entry"></app-event-card>
+</div>

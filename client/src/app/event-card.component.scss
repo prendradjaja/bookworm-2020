@@ -1,0 +1,31 @@
+:host .event-card-container {
+  $padding: 8px;
+  $border-width: 1px;
+  $border-left-width: 6px;
+
+  display: block;
+  border: gray $border-width solid;
+  border-left-width: $border-left-width;
+  max-width: 400px - $padding * 2 - $border-width - $border-left-width;
+  padding: $padding;
+  margin-bottom: 8px;
+
+  overflow: hidden;
+
+  & > div:not(:last-child) {
+    margin-bottom: 6px;
+  }
+
+  .book {
+    font-weight: bold;
+  }
+  .timestamp {
+    color: #bbbbbb;
+    font-size: 12px;
+  }
+}
+
+a {
+  color: #184489;
+  text-decoration: none;
+}
