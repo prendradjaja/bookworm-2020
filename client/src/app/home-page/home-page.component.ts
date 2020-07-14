@@ -3,6 +3,7 @@ import { ApiService } from "../api.service"
 import { Book, ReadingEntry } from '../api-types';
 import { EditMode } from '../types';
 import { wait } from '../misc';
+import { ReadingEntryService } from '../reading-entry.service'
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +13,7 @@ import { wait } from '../misc';
 export class HomePageComponent {
 
   books$ = this.apiService.getBooks();
-  readingEntries$ = this.apiService.getReadingEntries();
+  readingEntries$ = this.readingEntryService.items$;
 
   // Undefined if not editing
   editingBook?: {
@@ -27,7 +28,10 @@ export class HomePageComponent {
     readingEntry?: ReadingEntry // Undefined if creating a new entry
   };
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private readingEntryService: ReadingEntryService
+  ) {}
 
   async addBook() {
     await this.stopEditingBookAndTick();
@@ -80,13 +84,17 @@ export class HomePageComponent {
     const yes = confirm("Delete reading entry? " + entry.id);
     if (yes) {
       this.apiService.deleteReadingEntry(entry.id).then(
-        () => console.info(`Deleted reading entry ${entry.id}`)
+        () => {
+          console.info(`Deleted reading entry ${entry.id}`);
+          this.readingEntryService.refetch();
+        }
       )
     }
   }
 
   stopEditingReadingEntry() {
     this.editingReadingEntry = undefined;
+    this.readingEntryService.refetch();
   }
 
   private async stopEditingReadingEntryAndTick() {
