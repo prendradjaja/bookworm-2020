@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Book, ReadingEntry, OmitId, ReadingEntryCreationBody, BookCreationBody, HydratedReadingEntry } from "./api-types";
+import { DateTime } from 'luxon';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,11 @@ export class ApiService {
 
   public getReadingEntries(): Promise<HydratedReadingEntry[]> {
     return this.myFetch('/api/reading_entries')
-      .then(response => response.json());
+      .then(response => response.json())
+      .then((entries) => entries.map(entry => ({
+        ...entry,
+        created_at: DateTime.fromISO(entry.created_at)
+      })));
   }
   
   public createReadingEntry(entry: ReadingEntryCreationBody): Promise<void> {

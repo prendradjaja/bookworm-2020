@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon';
+
 export type OmitId<T> = Omit<T, 'id'>;
 
 export interface Book {
@@ -14,7 +16,7 @@ export interface ReadingEntry {
   start_place?: string;
   end_place?: string;
   notes?: string;
-  created_at: string; // TODO date handling/parsing?
+  created_at: DateTime; // TODO date handling/parsing?
 }
 
 export type ReadingEntryCreationBody = Omit<ReadingEntry, 'id' | 'created_at'>
