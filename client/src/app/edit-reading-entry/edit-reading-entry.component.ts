@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { EditMode } from '../types';
 import { ReadingEntry, OmitId, ReadingEntryCreationBody } from '../api-types';
 import { ApiService } from '../api.service';
+import { ReadingEntryService } from '../reading-entry.service';
 
 @Component({
   selector: 'edit-reading-entry',
@@ -27,7 +28,10 @@ export class EditReadingEntryComponent implements OnInit {
   errorMessage: string = '';
   isSubmitting = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private readingEntryService: ReadingEntryService
+  ) {}
 
   ngOnInit(): void {
     if (this.readingEntry) {
@@ -63,7 +67,8 @@ export class EditReadingEntryComponent implements OnInit {
     promise
       .then(() => this.handleCancel())
       .catch(() => this.setError("Server error"))
-      .finally(() => this.isSubmitting = false);
+      .finally(() => this.isSubmitting = false)
+      .then(() => this.readingEntryService.refetch());
   }
 
   handleCancel() {

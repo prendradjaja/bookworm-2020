@@ -94,7 +94,6 @@ export class HomePageComponent {
 
   stopEditingReadingEntry() {
     this.editingReadingEntry = undefined;
-    this.readingEntryService.refetch();
   }
 
   private async stopEditingReadingEntryAndTick() {
