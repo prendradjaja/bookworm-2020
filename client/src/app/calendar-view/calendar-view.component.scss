@@ -31,7 +31,7 @@ $z-number-and-dots: 30;
       border: 1px solid white;
       cursor: pointer;
       text-align: center;
-      // todo align with left side?
+      // TODO align with left side?
 
       &.end-of-book:before {
         $downsize: 6px;
@@ -80,7 +80,6 @@ $z-number-and-dots: 30;
       }
 
       &:hover:not(.day-selected) {
-        // todo do the same thing that bryant and i did with bookmark indicators? (i.e. even lighter if you re-hover or whatever)
         opacity: 0.75;
       }
     }

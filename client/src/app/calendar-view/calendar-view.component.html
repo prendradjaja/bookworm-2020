@@ -8,7 +8,8 @@
             'day-selected': day && currentDateFilter && day.fullDate.toString() == currentDateFilter.toString(),
             'end-of-book': day && day.endOfBook
           }"
-          (click)="clickCalendarDay(day)">
+      >
+          <!-- (click)="clickCalendarDay(day)" -->
         <div *ngIf="day.multiColor"
              class="multi-color"
              [style.border-top-color]="day.topColor"

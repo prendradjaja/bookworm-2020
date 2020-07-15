@@ -19,8 +19,8 @@ import { DateTime } from 'luxon';
 })
 export class CalendarViewComponent implements OnInit, OnChanges {
   @Input() allRows: HydratedReadingEntry[];
-  @Input() currentDateFilter: Date;
-  @Output() filterByDate = new EventEmitter<Date>();
+  // @Input() currentDateFilter: Date;
+  // @Output() filterByDate = new EventEmitter<Date>();
 
   weeks = [];
   showFullCalendar = false;
@@ -35,7 +35,7 @@ export class CalendarViewComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.computeEventsByDate();
     this.computeWeeks();
-    // ptodo will this component actually handle changes properly? should it need to?
+    // Will this component actually handle changes properly? Should it need to?
   }
 
   visibleWeeks() {
@@ -49,9 +49,9 @@ export class CalendarViewComponent implements OnInit, OnChanges {
     this.showFullCalendar = !this.showFullCalendar;
   }
 
-  public clickCalendarDay(e) {
-    this.filterByDate.emit(e.fullDate as Date); // ptodo emit filter event
-  }
+  // public clickCalendarDay(e) {
+  //   this.filterByDate.emit(e.fullDate as Date);
+  // }
 
   private computeEventsByDate(): void {
     this.eventsByDate = {};
@@ -83,7 +83,7 @@ export class CalendarViewComponent implements OnInit, OnChanges {
   }
 
   private makeDay(d: DateTime) {
-    // todo add typing to the day object
+    // TODO add typing to the day object
     const day = {
       d: d.day,
       fullDate: d
@@ -110,7 +110,7 @@ export class CalendarViewComponent implements OnInit, OnChanges {
       const lastBook = todaysEvents[todaysEvents.length - 1].book;
       const lastColor = this.colorService.getColor(lastBook);
       day.multiColor = true;
-      // todo the more frequent one should be on top
+      // TODO the more frequent one should be on top
       const [color1, color2] = twoItemSetToArray(colors);
       if (color1 === lastColor) {
         [day.topColor, day.rightColor] = [color1, color2];
