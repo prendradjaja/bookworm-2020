@@ -136,30 +136,6 @@ export class CalendarViewComponent implements OnInit, OnChanges {
   }
 }
 
-// todo real tz handling? moment?
-function dtos(d: Date) {
-  // return d.toISOString().split('T')[0];
-  const Y = d.getFullYear();
-  const M = d.getMonth() + 1;
-  const D = d.getDate();
-  return `${M}/${D}/${Y}`;
-}
-
-function stod(s: string) {
-  const temp = new Date(s);
-  // todo discard time portion? how does this work with tzs?
-  return temp;
-}
-
-function stos(s: string) {
-  return dtos(stod(s));
-}
-
-function add(d: Date, days) {
-  const DAY_IN_MS = 1000 * 60 * 60 * 24;
-  return new Date(d.getTime() + DAY_IN_MS * days);
-}
-
 function oneItemSetToItem<T>(s: Set<T>): T {
   if (s.size !== 1) {
     window.alert("this set is not a one item set");
