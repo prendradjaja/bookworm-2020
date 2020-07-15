@@ -3,6 +3,8 @@
   <a routerLink="/sandbox">Sandbox</a>
 </div>
 
+<calendar-view [allRows]="readingEntries$ | async"></calendar-view>
+
 Books
 <ul>
   <li *ngFor="let book of books$ | async">

@@ -1,0 +1,32 @@
+<div class="calendar-centerer">
+  <table class="calendar-view">
+    <tr *ngFor="let week of visibleWeeks()">
+      <td class="calendar-day" *ngFor="let day of week"
+          [style.background-color]="day.color ? day.color : '#eeeeee'"
+          [style.color]="day.color || day.multiColor ? 'white' : '#777777'"
+          [ngClass]="{
+            'day-selected': day && currentDateFilter && day.fullDate.toString() == currentDateFilter.toString(),
+            'end-of-book': day && day.endOfBook
+          }"
+      >
+          <!-- (click)="clickCalendarDay(day)" -->
+        <div *ngIf="day.multiColor"
+             class="multi-color"
+             [style.border-top-color]="day.topColor"
+             [style.border-right-color]="day.rightColor"></div>
+        <span class="day-number">{{day.d}}</span>
+        <calendar-day-dots [n]="day.numEvents"></calendar-day-dots>
+      </td>
+    </tr>
+    <tr class="toggle-row">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button class="toggle-calendar" (click)="toggleCalendar()">
+          {{ showFullCalendar ? "▲" : "▼" }}
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
