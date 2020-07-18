@@ -21,7 +21,11 @@ function configureRoutes() {
   app.get('/api/books', async (req, res) => {
     try {
       await fakeNetworkDelay();
-      const { rows: books } = await pgPool.query('SELECT * FROM book');
+      const { rows: books } = await pgPool.query(`
+        SELECT *
+        FROM book
+        ORDER BY id DESC
+      `);
       res.send(books);
     } catch (err) {
       console.error(err);
