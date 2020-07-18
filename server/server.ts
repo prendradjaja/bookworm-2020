@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 app.use(express.json());
-// app.use(express.static('public'));
+app.use(express.static('../client/dist/bookworm-client'));
 
 const pgPool = new Pool({
   connectionString: DATABASE_URL,
