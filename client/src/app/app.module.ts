@@ -11,6 +11,7 @@ import { EditReadingEntryComponent } from './edit-reading-entry/edit-reading-ent
 import { EventCardComponent } from './event-card.component';
 import { BooksPageComponent } from './books-page/books-page.component'
 import { CalendarViewComponent } from './calendar-view/calendar-view.component';
+import { TopNavComponent } from './top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CalendarViewComponent } from './calendar-view/calendar-view.component';
     EditReadingEntryComponent,
     EventCardComponent,
     BooksPageComponent,
-    CalendarViewComponent
+    CalendarViewComponent,
+    TopNavComponent
   ],
   imports: [
     BrowserModule,
