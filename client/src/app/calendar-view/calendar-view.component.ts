@@ -67,7 +67,7 @@ export class CalendarViewComponent implements OnInit, OnChanges {
 
   private computeWeeks() {
     // TODO Figure out better naming for weekDates and weekUis?
-    let weekDate = DateTime.fromObject({ year: 2019, month: 12, day: 30 });
+    let weekDate = DateTime.fromObject({ year: 2020, month: 7, day: 13 });
     this.weeks = [];
     const endWeek = DateTime
       .local()
