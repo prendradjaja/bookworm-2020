@@ -18,6 +18,9 @@ cd bookworm-2020/server
 psql -c "CREATE DATABASE bookworm"
 ./scripts/run-all-migrations.sh
 
+# (Optional) Add example data
+psql bookworm < scripts/add-example-data.sql
+
 # Install dependencies
 npm install
 ```
