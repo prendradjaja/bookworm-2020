@@ -56,3 +56,14 @@ npx ng serve
 ```
 
 Then visit: http://localhost:4200/
+
+## Deploying to Heroku
+
+Prerequisites: Heroku CLI
+
+```
+heroku create
+git push heroku master
+heroku addons:create heroku-postgresql:hobby-dev
+heroku pg:psql < server/migrations/010--create-tables-book-and-readingentry.sql
+```
