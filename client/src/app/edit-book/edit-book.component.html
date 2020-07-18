@@ -1,9 +1,10 @@
-<h2 *ngIf="editMode === 'new'">
-  Creating book
-</h2>
-<h2 *ngIf="editMode === 'existing'">
-  Editing book (id: {{ id }})
-</h2>
+<strong [style.color]="color">
+  {{
+    editMode === 'new'
+      ? 'Creating book'
+      : 'Editing book (id: '+id+')'
+  }}
+</strong>
 
 <div>
   Title:

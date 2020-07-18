@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, HostBinding } from '@angular/core';
 import { Book, OmitId, BookCreationBody } from "../api-types";
 import { EditMode } from "../types";
 import { ApiService } from '../api.service';
@@ -19,6 +19,7 @@ export class EditBookComponent implements OnInit {
 
   // Form values
   title: string = '';
+  @HostBinding('style.border-left-color')
   color: string = '';
 
   // Other state

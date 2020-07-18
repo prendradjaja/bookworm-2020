@@ -1,8 +1,12 @@
 :host {
+  $border-width: 1px;
+  $border-left-width: 6px;
+
   display: block;
-  border: 1px solid gray;
   padding: 4px;
   max-width: 400px;
+  border: black $border-width solid;
+  border-left-width: $border-left-width;
 }
 
 h2 {
