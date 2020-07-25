@@ -23,8 +23,9 @@
       <td></td>
       <td></td>
       <td>
-        <button class="toggle-calendar" (click)="toggleCalendar()">
-          {{ showFullCalendar ? "▲" : "▼" }}
+        <button mat-icon-button (click)="toggleCalendar()">
+          <mat-icon *ngIf="showFullCalendar">expand_less</mat-icon>
+          <mat-icon *ngIf="!showFullCalendar">expand_more</mat-icon>
         </button>
       </td>
     </tr>

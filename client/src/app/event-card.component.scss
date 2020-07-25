@@ -10,6 +10,8 @@
   padding: $padding;
   margin-bottom: 8px;
 
+  position: relative;
+
   overflow: hidden;
 
   & > div:not(:last-child) {
@@ -28,4 +30,10 @@
 a {
   color: #184489;
   text-decoration: none;
+}
+
+button.menu-trigger {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
