@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { EditMode } from '../types';
-import { ReadingEntry, OmitId, ReadingEntryCreationBody } from '../api-types';
+import { ReadingEntry, OmitId, ReadingEntryCreationBody, ReadingEntryUpdateBody } from '../api-types';
 import { ApiService } from '../api.service';
 import { ReadingEntryService } from '../reading-entry.service';
 
@@ -36,7 +36,9 @@ export class EditReadingEntryComponent implements OnInit {
   ngOnInit(): void {
     if (this.readingEntry) {
       this.id = this.readingEntry.id;
-      // TODO Fill in form values (for "update" use case)
+      this.start_place = this.readingEntry.start_place || '';
+      this.end_place = this.readingEntry.end_place || '';
+      this.notes = this.readingEntry.notes || '';
     }
   }
 
@@ -50,13 +52,11 @@ export class EditReadingEntryComponent implements OnInit {
     if (this.editMode === EditMode.NEW) {
       promise = this.apiService.createReadingEntry(values);
     } else if (this.editMode === EditMode.EXISTING) {
-      const valuesWithId = {
+      const body: ReadingEntryUpdateBody = {
         ...values,
         id: this.id
       }
-      // promise = this.apiService.editReadingEntry(valuesWithId);
-      console.error("Unimplemented: Update reading entry")
-      return;
+      promise = this.apiService.editReadingEntry(body);
     } else {
       // Impossible
       // TODO: Add type safety via ts-essentials "unreachable case"

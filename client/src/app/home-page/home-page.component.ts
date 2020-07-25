@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../api.service"
-import { Book, ReadingEntry } from '../api-types';
+import { Book, ReadingEntry, HydratedReadingEntry } from '../api-types';
 import { EditMode } from '../types';
 import { wait } from '../misc';
 import { ReadingEntryService } from '../reading-entry.service'
@@ -34,6 +34,15 @@ export class HomePageComponent {
     this.editingReadingEntry = {
       editMode: EditMode.NEW,
       book
+    };
+  }
+
+  async editReadingEntry(entry: HydratedReadingEntry) {
+    await this.stopEditingReadingEntryAndTick();
+    this.editingReadingEntry = {
+      editMode: EditMode.EXISTING,
+      book: entry.book,
+      readingEntry: entry
     };
   }
 

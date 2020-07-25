@@ -25,7 +25,7 @@
 </div>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item disabled>
+  <button mat-menu-item (click)="handleEdit()">
     <span>Edit</span>
   </button>
   <button mat-menu-item (click)="handleDelete()">

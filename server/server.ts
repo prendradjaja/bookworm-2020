@@ -129,6 +129,26 @@ function configureRoutes() {
     }
   });
 
+  // I'm leaving .created_at alone -- is this really a PUT?
+  app.put('/api/reading_entries/:id', async (req, res) => {
+    try {
+      await fakeNetworkDelay();
+      const { book_id, start_place, end_place, notes } = req.body;
+      const { id } = req.params;
+      await pgPool.query(`
+        UPDATE reading_entry
+        SET book_id = $1, start_place = $2, end_place = $3, notes = $4
+        WHERE id = $5
+      `,
+        [book_id, start_place, end_place, notes, id]
+      );
+      res.send('{}')
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Error " + err);
+    }
+  });
+
   app.delete('/api/reading_entries/:id', async (req, res) => {
     try {
       await fakeNetworkDelay();

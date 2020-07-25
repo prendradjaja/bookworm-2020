@@ -12,6 +12,7 @@ export class EventCardComponent implements OnInit {
 
   @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
   @Output() delete: EventEmitter<void> = new EventEmitter<void>();
+  @Output() edit: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private colorService: ColorService) {}
 
@@ -23,6 +24,10 @@ export class EventCardComponent implements OnInit {
 
   handleDelete() {
     this.delete.emit();
+  }
+
+  handleEdit() {
+    this.edit.emit();
   }
 
   getColor(): string {

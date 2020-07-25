@@ -11,14 +11,16 @@
 
 <edit-reading-entry
   *ngIf="editingReadingEntry"
-  [editMode]="'new'"
+  [editMode]="editingReadingEntry.editMode"
   [bookId]="editingReadingEntry.book.id"
   [bookTitle]="editingReadingEntry.book.title"
+  [readingEntry]="editingReadingEntry.readingEntry"
   (cancel)="stopEditingReadingEntry()"
 ></edit-reading-entry>
 <div *ngFor="let entry of readingEntries$ | async">
   <app-event-card
     [row]="entry"
     (delete)="deleteReadingEntry(entry)"
+    (edit)="editReadingEntry(entry)"
   ></app-event-card>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book, ReadingEntry, OmitId, ReadingEntryCreationBody, BookCreationBody, HydratedReadingEntry } from "./api-types";
+import { Book, ReadingEntry, OmitId, ReadingEntryCreationBody, BookCreationBody, HydratedReadingEntry, ReadingEntryUpdateBody } from "./api-types";
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,18 @@ export class ApiService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(entry),
+    })
+    .then(() => undefined);
+  }
+
+  public editReadingEntry(entry: ReadingEntryUpdateBody): Promise<void> {
+    const {id, ...entryWithoutId} = entry;
+    return this.myFetch(`/api/reading_entries/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(entryWithoutId),
     })
     .then(() => undefined);
   }
