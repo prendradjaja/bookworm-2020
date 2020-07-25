@@ -13,3 +13,17 @@ body {
   margin: 12px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+// Adapted from https://stackoverflow.com/a/57759753/1945088
+.small-icon-button.mat-icon-button {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+
+  .mat-icon {
+     width: 18px;
+     height: 18px;
+     line-height: 18px;
+     font-size: 18px;
+  }
+}

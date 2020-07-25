@@ -1,8 +1,9 @@
 <div class="event-card-container" [style.border-left-color]="getColor()">
   <div>
     <div>
-      <button (click)="handleDelete()">-</button>
-      <!-- <button disabled>Edit</button> -->
+      <button class="menu-trigger small-icon-button" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
       <a style="cursor: pointer" class="book" (click)="handleClick(row.book.title)" [style.color]="getColor()">
         {{row.book.title}}
       </a>
@@ -22,3 +23,12 @@
     </app-long-response-formatter> -->
   </div>
 </div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item disabled>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item (click)="handleDelete()">
+    <span>Delete</span>
+  </button>
+</mat-menu>

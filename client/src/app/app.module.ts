@@ -13,6 +13,9 @@ import { BooksPageComponent } from './books-page/books-page.component'
 import { CalendarViewComponent } from './calendar-view/calendar-view.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
