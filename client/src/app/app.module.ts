@@ -12,6 +12,7 @@ import { EventCardComponent } from './event-card.component';
 import { BooksPageComponent } from './books-page/books-page.component'
 import { CalendarViewComponent } from './calendar-view/calendar-view.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TopNavComponent } from './top-nav/top-nav.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
