@@ -3,7 +3,7 @@
 <calendar-view [allRows]="readingEntries$ | async"></calendar-view>
 
 <ul>
-  <li *ngFor="let book of books$ | async">
+  <li *ngFor="let book of books$ | async" [style.color]="book.color">
     {{ book.title }}
     <button (click)="addReadingEntry(book)">Add entry</button>
   </li>
