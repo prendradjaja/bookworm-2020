@@ -1,0 +1,19 @@
+Features
+. FAB
+. Filter by book
+. Filter by date
+
+Make it pretty
+. edit-reading-entry
+
+Tech debt / productivity / dev env / infra
+. Change url to bookworm-pandu
+. Rename: add & edit -> create & update
+. Rename: event-card -> reading-entry-card
+. Rename: calendar-view -> calendar
+. SNC
+. Angular plugin
+. Prettier
+
+Maybe
+. CI -- Travis?
